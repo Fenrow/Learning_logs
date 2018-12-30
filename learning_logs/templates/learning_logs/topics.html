@@ -2,7 +2,10 @@
 
 {% block content %}
 
-  <p>Tematy</p>
+  <p>
+    Tematy -
+    <a href="{% url 'learning_logs:new_topic' %}">Dodaj nowy temat</a>
+  </p>
 
   <ul>
     {% for topic in topics %}
@@ -13,7 +16,5 @@
       <li>Nie został jeszcze dodany żaden temat.</li>
     {% endfor %}
   </ul>
-
-  <a href="{% url 'learning_logs:new_topic' %}">Dodaj nowy temat</a>
 
 {% endblock content %}
