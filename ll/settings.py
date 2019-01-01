@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #Moje aplikacje
+    #Aplikacje innych firm
+    'bootstrap3',
 
+    #Moje aplikacje
     'learning_logs',
     'users'
 ]
@@ -124,6 +126,32 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#My settings
+#Moje ustawienia
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/users/login/'
+
+#Ustawienia dla django-bootstrap3
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
+
+#Ustawienia dla Heroku
+cwd = os.getcwd()
+if cwd = '/app' or cwd[:4] == '/tmp':
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
+
+    #Honorowanie nagłówka 'X-Forwarded-Proto' dla request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    #Zezwolnenie na wszystkie nagłówki hosta
+    ALLOWED_HOSTS = ['*']
+
+    #Konfiguracja zasobów statycznych
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
