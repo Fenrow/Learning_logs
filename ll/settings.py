@@ -138,22 +138,23 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
-#Ustawienia dla Heroku
+# Heroku settings
 cwd = os.getcwd()
 print("--- CWD ---\n", cwd, "\n---\n")
-if cwd = '/app' or cwd[:4] == '/tmp':
+if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
     }
 
-    #Honorowanie nagłówka 'X-Forwarded-Proto' dla request.is_secure()
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    #Zezwolnenie na wszystkie nagłówki hosta
+    # Only allow heroku to host the project.
     ALLOWED_HOSTS = ['*']
+    DEBUG = True
 
-    #Konfiguracja zasobów statycznych
+    # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (
