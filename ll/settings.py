@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     #Aplikacje innych firm
     'bootstrap3',
-
+    'whitenoise.runserver_nostatic',
+    
     #Moje aplikacje
     'learning_logs',
     'users'
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
