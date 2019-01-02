@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #Aplikacje innych firm
     'bootstrap3',
     'whitenoise.runserver_nostatic',
-    
+
     #Moje aplikacje
     'learning_logs',
     'users'
@@ -159,4 +159,4 @@ if cwd = '/app' or cwd[:4] == '/tmp':
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
