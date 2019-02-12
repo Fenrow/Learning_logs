@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-import django_heroku
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     #Aplikacje innych firm
     'bootstrap3',
-    'whitenoise.runserver_nostatic',
 
     #Moje aplikacje
     'learning_logs',
@@ -49,8 +48,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -138,29 +135,23 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
-# Heroku settings
-cwd = os.getcwd()
-print("--- CWD ---\n", cwd, "\n---\n")
-if cwd == '/app' or cwd[:4] == '/tmp':
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config(default='postgres://localhost')
-    }
+#Ustawienia dla Heroku
+#cwd = os.getcwd()
+#if cwd = '/app' or cwd[:4] == '/tmp':
+#    import dj_database_url
+#    DATABASES = {
+#        'default': dj_database_url.config(default='postgres://localhost')
+#    }
 
-    # Honor the 'X-Forwarded-Proto' header for request.is_secure().
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    #Honorowanie nagłówka 'X-Forwarded-Proto' dla request.is_secure()
+#    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # Only allow heroku to host the project.
-    ALLOWED_HOSTS = ['*']
-    DEBUG = True
+    #Zezwolnenie na wszystkie nagłówki hosta
+#    ALLOWED_HOSTS = ['*']
 
-    # Static asset configuration
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+    #Konfiguracja zasobów statycznych
+#    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+#    STATIC_ROOT = 'staticfiles'
+#    STATICFILES_DIRS = (
+#        os.path.join(BASE_DIR, 'static'),
+#    )

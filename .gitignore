@@ -1,3 +1,4 @@
 ll_env/
 __pychache__/
-*.sqlite3
+*.pyc
+staticfiles/
